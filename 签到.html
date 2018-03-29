@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function submitFunction()
+		{
+		x=document.getElementById("note");  
+		x.innerHTML="如临时有变动可提前请假";    
+		x.style.color = "#ff0000";
+		}
+//提交后改变header内容及颜色*
+	</script>
+</head>
+<body>
+
+<h1>3A实习生签到系统</h1>
+
+<p id="note">
+请填写下周出勤情况；0为请假，1为出勤
+</p>
+
+
+
+<button type="button" onclick="submitFunction()">提交</button>
+<!-- <button type="button" onclick="alert('提交成功!')">提交</button> -->
+
+</body>
+</html>

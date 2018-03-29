@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+	</script>
 	<script>
 		function submitFunction()
 		{
@@ -9,20 +11,58 @@
 		x.style.color = "#ff0000";
 		}
 //提交后改变header内容及颜色*
+
+	function parttimeAttend() 
+	{ 
+	try 
+	{ 
+	var x=document.getElementById("attendance").value; 
+	if(x=="") throw "请输入一个数字"; 
+	if(isNaN(x)) throw "不是数字";
+	if(x>1) throw "数字太大"; 
+	if(x<0) throw "数字太小"; 
+	} 
+	catch(err) 
+	{ 
+	var y=document.getElementById("mess"); 
+	y.innerHTML="您的输入有误：" + err + "。"; } }
+	function validate_required(field, alerttxt) 
+	{
+	with (field) 
+	  {
+	  if (value == null || value == "") 
+	    {alert(alerttxt); return false }
+	  else {return true }
+	  }
+	}
+
+	function validate_form(thisform) 
+	{
+	with (thisform) 
+	  {
+	  if (validate_required(att, "Email must be filled out!") == false) 
+	    {att.focus(); return false }
+		}
+	}
 	</script>
 </head>
 <body>
 
 <h1>3A实习生签到系统</h1>
-
-<p id="note">
-请填写下周出勤情况；0为请假，1为出勤
+<p >
+请填写下周出勤情况；0为请假，1为出勤。
 </p>
 
+<!-- <p id="note"></p>
+<input id="attendance" type="number"> -->
+<form action="submitpage.htm" onsubmit="return validate_form(this)" method="post">
+2018/4/1:<input id="attendance" name="att" type="number" size="30">
+<!-- <input type="submit" value="Submit"> -->
+</form>
 
-
-<button type="button" onclick="submitFunction()">提交</button>
+<button type="button" onclick="parttimeAttend()">提交</button>
+<button type="button" onclick="validate_form(this)">提交</button>
 <!-- <button type="button" onclick="alert('提交成功!')">提交</button> -->
-
+<p id="mess"></p>
 </body>
 </html>
